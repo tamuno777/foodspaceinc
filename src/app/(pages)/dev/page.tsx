@@ -17,7 +17,7 @@ const Dev = () => {
           height={100}
           className="w-32 h-32 mx-auto rounded-full object-cover shadow-lg border-4 border-white"
         />
-        <h1 className="text-4xl font-bold mt-4">Hi, I'm [Your Name]</h1>
+        <h1 className="text-4xl font-bold mt-4">Hi, I&apos;m [Your Name]</h1>
         <p className="mt-2 text-lg">
           A passionate <span className="font-semibold">Frontend Web Developer</span> with expertise in building engaging and dynamic web applications.
         </p>
@@ -27,7 +27,7 @@ const Dev = () => {
       <section className="mt-12 text-center">
         <h2 className="text-3xl font-bold mb-4">About Me</h2>
         <p className="text-gray-700 text-lg leading-relaxed max-w-4xl mx-auto">
-          I'm a highly motivated web developer with a strong foundation in JavaScript, React, Next.js, and CSS. Over the years, I've developed projects that focus on responsive designs, seamless user experiences, and clean, maintainable code. My goal is to deliver impactful solutions that make a difference.
+          I&apos;m a highly motivated web developer with a strong foundation in JavaScript, React, Next.js, and CSS. Over the years, I&apos;ve developed projects that focus on responsive designs, seamless user experiences, and clean, maintainable code. My goal is to deliver impactful solutions that make a difference.
         </p>
       </section>
 

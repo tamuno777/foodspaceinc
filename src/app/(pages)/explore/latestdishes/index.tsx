@@ -26,6 +26,7 @@ const DishesSection: React.FC = () => {
           {dishes.map((dish) => (
             <DishCard
               dish={dish}
+              key={dish.id}
               onClick={() => router.push(`/explore/${dish.id}`)}
             />
           ))}

@@ -1,5 +1,3 @@
-import Image from "next/image";
-import styles from "./page.module.css";
 import { CarouselPlugin } from "@/components/carosel";
 import HomeCategory from "@/components/homecategory";
 import LatestDish from "@/app/(pages)/explore/latestdishes";

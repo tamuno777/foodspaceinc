@@ -15,7 +15,6 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Image from "next/image";
-import { title } from "process";
 
 export function CarouselPlugin() {
   const plugin = React.useRef(

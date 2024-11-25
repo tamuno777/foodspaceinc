@@ -17,6 +17,8 @@ interface Dish {
 
 interface DishCardProps {
   dish: Dish;
+  onClick: () => void;
+
 }
 
 const DishCard: React.FC<DishCardProps> = ({ dish }) => {
