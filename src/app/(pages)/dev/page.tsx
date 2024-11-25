@@ -27,7 +27,7 @@ const Dev = () => {
       <section className="mt-12 text-center">
         <h2 className="text-3xl font-bold mb-4">About Me</h2>
         <p className="text-gray-700 text-lg leading-relaxed max-w-4xl mx-auto">
-          I&apos;m a highly motivated web developer with a strong foundation in JavaScript, React, Next.js, and CSS. Over the years, I&apos;ve developed projects that focus on responsive designs, seamless user experiences, and clean, maintainable code. My goal is to deliver impactful solutions that make a difference.
+          I&apos;m a highly motivated web developer with a strong foundation in JavaScript,TypeScript, React, Next.js, and CSS. Over the years, I&apos;ve developed projects that focus on responsive designs, seamless user experiences, and clean, maintainable code. My goal is to deliver impactful solutions that make a difference.
         </p>
       </section>
 
