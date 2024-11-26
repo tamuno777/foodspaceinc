@@ -1,11 +1,9 @@
 "use client";
 
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "../ui/card";
-import { collection, addDoc } from "firebase/firestore";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { useState } from "react";
 import { useAuth } from "@/context/authcontext";
-import { db } from "@/firebase/firebaseConfig";
 import { addFavorite } from "@/services/favouriteService";
 
 interface Dish {
@@ -30,20 +28,11 @@ const DishCard: React.FC<DishCardProps> = ({ dish }) => {
     if (!user) {
       alert("Please log in to add to favorites.");
       window.location.href = "/auth"; // Redirect to login page if not logged in
+      setIsFavorited(false)
       return;
     }
 
-  //   try {
-  //     const favoritesRef = collection(db, "favorites");
-  //     await addDoc(favoritesRef, {
-  //       userId: user.uid, // Associate the favorite with the user
-  //       ...dish, // Add the dish data to favorites
-  //     });
-  //     setIsFavorited(true); // Mark as favorited
-  //   } catch (error) {
-  //     console.error("Error adding to favorites:", error);
-  //   }
-  // };
+ 
   try {
     await addFavorite(user.uid, dish); // Pass user.uid as `uid`
     alert("Added to favorites!");
