@@ -4,6 +4,8 @@ import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "@/firebase/firebaseConfig";
 import { useState, useEffect } from "react";
 import { useAuth } from "@/context/authcontext";
+import { useRouter } from "next/navigation";
+import DishCard from "@/components/dishCard";
 
 interface Dish {
   id: string;
@@ -14,6 +16,8 @@ interface Dish {
 }
 
 const FavoritesPage = () => {
+  const router = useRouter();
+
   const { user, loading } = useAuth();
   const [favorites, setFavorites] = useState<Dish[]>([]);
 
@@ -26,7 +30,10 @@ const FavoritesPage = () => {
     }
 
     const fetchFavorites = async () => {
-      const q = query(collection(db, "favorites"), where("uid", "==", user.uid));
+      const q = query(
+        collection(db, "favorites"),
+        where("uid", "==", user.uid)
+      );
       const querySnapshot = await getDocs(q);
 
       const fetchedFavorites: Dish[] = querySnapshot.docs.map((doc) => ({
@@ -48,15 +55,27 @@ const FavoritesPage = () => {
       {favorites.length === 0 ? (
         <p>No favorite dishes yet.</p>
       ) : (
-        <div>
-          {favorites.map((dish) => (
-            <div key={dish.id}>
-              <h2>{dish.title}</h2>
-              <img src={dish.image} alt={dish.title} />
-              <p>{dish.description}</p>
-            </div>
-          ))}
-        </div>
+        <section
+          className="bg-pink-200 w-full flex justify-center items-center flex-col p-5"
+          style={{ width: "100vw" }}
+        >
+          <div
+            className="
+  grid gap-6 w-full 
+  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 
+   p-4 rounded-lg
+"
+          >
+            {" "}
+            {favorites.map((dish) => (
+              <DishCard
+                key={dish.id}
+                onClick={() => router.push(`/explore/${dish.id}`)}
+                dish={dish}
+              />
+            ))}
+          </div>
+        </section>
       )}
     </div>
   );
