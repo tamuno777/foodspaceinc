@@ -12,7 +12,7 @@ interface Dish {
 
 export const addFavorite = async (uid: string, dish: Dish) => {
   const favoritesRef = collection(db, "favorites");
-  await addDoc(favoritesRef, { uid, ...dish });
+  await addDoc(favoritesRef, { uid, ...dish }); // Use the uid passed as a parameter
 };
 
 export const fetchFavorites = async (uid: string): Promise<Dish[]> => {

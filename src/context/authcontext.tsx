@@ -1,35 +1,40 @@
-"use client"
-import { createContext, useState, useEffect, ReactNode, useContext } from "react";
-import {  onAuthStateChanged, User } from "firebase/auth";
-import { auth } from "@/firebase/firebaseConfig"; // Import your firebase config
+"use client";
 
-interface AuthContextType {
+import { createContext, useContext, useEffect, useState } from "react";
+import { getAuth, onAuthStateChanged, User } from "firebase/auth";
+
+interface AuthContextProps {
   user: User | null;
-  setUser: React.Dispatch<React.SetStateAction<User | null>>;
+  loading: boolean;
 }
 
-const AuthContext = createContext<AuthContextType | null>(null);
+const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 
-export const AuthProvider = ({ children }: { children: ReactNode }) => {
+export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
 
-  // Check if user is authenticated on mount
   useEffect(() => {
+    const auth = getAuth();
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      setLoading(false); // Set loading to false once auth state is resolved
     });
-    return () => unsubscribe();
+
+    return unsubscribe; // Cleanup listener on component unmount
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, setUser }}>
-      {children}
+    <AuthContext.Provider value={{ user, loading }}>
+      {loading ? <p>Loading...</p> : children}
     </AuthContext.Provider>
   );
 };
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
-  if (!context) throw new Error("useAuth must be used within AuthProvider");
+  if (!context) {
+    throw new Error("useAuth must be used within an AuthProvider");
+  }
   return context;
 };

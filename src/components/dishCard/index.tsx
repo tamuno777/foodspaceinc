@@ -6,6 +6,7 @@ import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { useState } from "react";
 import { useAuth } from "@/context/authcontext";
 import { db } from "@/firebase/firebaseConfig";
+import { addFavorite } from "@/services/favouriteService";
 
 interface Dish {
   id: string;
@@ -32,18 +33,25 @@ const DishCard: React.FC<DishCardProps> = ({ dish }) => {
       return;
     }
 
-    try {
-      const favoritesRef = collection(db, "favorites");
-      await addDoc(favoritesRef, {
-        userId: user.uid, // Associate the favorite with the user
-        ...dish, // Add the dish data to favorites
-      });
-      setIsFavorited(true); // Mark as favorited
-    } catch (error) {
-      console.error("Error adding to favorites:", error);
-    }
-  };
-
+  //   try {
+  //     const favoritesRef = collection(db, "favorites");
+  //     await addDoc(favoritesRef, {
+  //       userId: user.uid, // Associate the favorite with the user
+  //       ...dish, // Add the dish data to favorites
+  //     });
+  //     setIsFavorited(true); // Mark as favorited
+  //   } catch (error) {
+  //     console.error("Error adding to favorites:", error);
+  //   }
+  // };
+  try {
+    await addFavorite(user.uid, dish); // Pass user.uid as `uid`
+    alert("Added to favorites!");
+  } catch (error) {
+    console.error("Error adding to favorites:", error);
+    alert("Failed to add to favorites. pls log in");
+  }
+};
   
   return (
     <Card className="w-full rounded-lg shadow-md flex flex-col">

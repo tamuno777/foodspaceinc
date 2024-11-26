@@ -34,9 +34,7 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <AuthProvider>
           <Navbar />
-<div style={{minHeight:"70vh"}}>
-{children}
-</div>          <Footer />
+          <div style={{ minHeight: "70vh" }}>{children}</div> <Footer />
         </AuthProvider>
       </body>
     </html>
