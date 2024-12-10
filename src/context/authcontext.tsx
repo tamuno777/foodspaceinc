@@ -1,7 +1,8 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState } from "react";
-import { getAuth, onAuthStateChanged, User } from "firebase/auth";
+import {  onAuthStateChanged, User } from "firebase/auth";
+import { auth } from "@/firebase/firebaseConfig";
 
 interface AuthContextProps {
   user: User | null;
@@ -15,7 +16,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const auth = getAuth();
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setLoading(false); // Set loading to false once auth state is resolved
