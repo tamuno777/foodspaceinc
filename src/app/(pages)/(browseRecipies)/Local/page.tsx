@@ -3,9 +3,11 @@
 import React, { useState, useEffect } from "react";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "@/firebase/firebaseConfig";
-import "../../../../components/dishCard/index.css"
+import "../../../../components/dishCard/index.css";
 import DishCard from "@/components/dishCard";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/authcontext";
+import { removeFavorite, addFavorite } from "@/services/favouriteService";
 
 interface Dish {
   id: string;
@@ -20,7 +22,58 @@ const LocalDish = () => {
   const [dishes, setDishes] = useState<Dish[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const router = useRouter();
+  const { user } = useAuth();
 
+  const [favorites, setFavorites] = useState<Dish[]>([]);
+
+  const fetchFavorites = async () => {
+    if (!user) return;
+
+    try {
+      const q = query(
+        collection(db, "favorites"),
+        where("uid", "==", user.uid)
+      );
+      const querySnapshot = await getDocs(q);
+
+      const fetchedFavorites: Dish[] = querySnapshot.docs.map((doc) => ({
+        ...(doc.data() as Dish),
+        id: doc.id,
+      }));
+
+      setFavorites(fetchedFavorites);
+    } catch (error) {
+      console.error("Error fetching favorites:", error);
+    }
+  };
+
+  useEffect(() => {
+    if (loading) return;
+    if (!user) {
+      window.location.href = "/auth";
+      return;
+    }
+
+    fetchFavorites();
+  }, [user, loading]);
+
+  const handleFavoriteToggle = async (dish: Dish) => {
+    if (!user) return;
+
+    try {
+      const isAlreadyFavorited = favorites.some((fav) => fav.id === dish.id);
+
+      if (isAlreadyFavorited) {
+        await removeFavorite(user.uid, dish.id);
+        setFavorites((prev) => prev.filter((fav) => fav.id !== dish.id));
+      } else {
+        await addFavorite(user.uid, dish);
+        setFavorites((prev) => [...prev, dish]);
+      }
+    } catch (error) {
+      console.error("Error updating favorites:", error);
+    }
+  };
   useEffect(() => {
     const fetchLocalDishes = async () => {
       try {
@@ -64,11 +117,13 @@ const LocalDish = () => {
       <h1 className="text-3xl font-bold text-center mb-8">Local Dishes</h1>
       <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {dishes.map((dish) => (
-         <DishCard
-         key={dish.id}
-         onClick={() => router.push(`/explore/${dish.id}`)} 
-         dish={dish}
-       />
+          <DishCard
+            key={dish.id}
+            onClick={() => router.push(`/explore/${dish.id}`)}
+            dish={dish}
+            isFavorited={favorites.some((fav) => fav.id === dish.id)}
+            onFavoriteToggle={() => handleFavoriteToggle(dish)}
+          />
         ))}
       </div>
     </div>
