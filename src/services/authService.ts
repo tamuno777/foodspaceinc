@@ -14,6 +14,7 @@ export const loginWithGoogle = async () => {
       email: user.email,
       name: user.displayName,
       createdAt: new Date(),
+      profileimage: user.photoURL
     });
   };
   
@@ -29,5 +30,7 @@ export const loginWithGoogle = async () => {
       email: user.email,
       name: user.displayName,
       createdAt: new Date(),
+      profileimage: user.photoURL
+
     });
   };

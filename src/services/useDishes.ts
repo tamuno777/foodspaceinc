@@ -10,6 +10,8 @@ export interface Dish {
   description?: string;
   image?: string;
   chef?: string;
+  category?: string;
+  content?: string;
 }
 
 export const useAllDishes = () => {

@@ -9,10 +9,13 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { useState } from "react";
-// import SubmitDishForm from "../../(pages)/submitRecipie";
+import { FaUser } from "react-icons/fa";
+import { FcLike } from "react-icons/fc";
+import { useAuth } from "@/context/authcontext";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { user } = useAuth(); // Access user from Auth context
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -74,12 +77,12 @@ const Navbar = () => {
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <NavigationMenuLink className="px-2 m-1" href="/ourChef">
-                  Our Chef
+                  Our Chefs
                 </NavigationMenuLink>
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <NavigationMenuLink className="px-2 m-1" href="/Contact">
-                  Contact Us
+                  Contact 
                 </NavigationMenuLink>
               </NavigationMenuItem>
               <NavigationMenuItem>
@@ -89,12 +92,20 @@ const Navbar = () => {
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <NavigationMenuLink className="px-2 m-1" href="/favourite">
-                  Favourites
+                <FcLike  style={{fontSize:"25px"}} />
                 </NavigationMenuLink>
               </NavigationMenuItem>
               <NavigationMenuItem>
-                <NavigationMenuLink className="px-2 m-1" href="/auth">
-                  Auth pls
+              <NavigationMenuLink className="px-2 m-1" href="/auth">
+                  {user && user.photoURL ? (
+                    <img
+                      src={user.photoURL}
+                      alt="Profile"
+                      className="w-6 h-6 rounded-full"
+                    />
+                  ) : (
+                    <FaUser style={{ fontSize: "25px" }} />
+                  )}
                 </NavigationMenuLink>
               </NavigationMenuItem>
             </NavigationMenuList>
@@ -127,19 +138,27 @@ const Navbar = () => {
               Submit Recipe
             </a>
             <a href="/ourChef" className="block py-2 text-gray-700">
-              Our Chef
+              Our Chefs
             </a>
             <a href="/favourite" className="block py-2 text-gray-700">
-              Favourites
+            <FcLike style={{fontSize:"25px"}} />
             </a>
             <a href="/Contact" className="block py-2 text-gray-700">
-              Contact Us
+              Contact 
             </a>
             <a href="/dev" className="block py-2 text-gray-700">
               Dev
             </a>
             <a href="/auth" className="block py-2 text-gray-700">
-            auth
+              {user && user.photoURL ? (
+                <img
+                  src={user.photoURL}
+                  alt="Profile"
+                  className="w-6 h-6 rounded-full"
+                />
+              ) : (
+                <FaUser style={{ fontSize: "25px" }} />
+              )}
             </a>
           </div>
         </div>
