@@ -85,7 +85,7 @@ const ExplorePage: React.FC = () => {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search for dishes..."
-            className="w-full p-2 border rounded-lg"
+            className="w-full p-2 border rounded-lg bg-pink-200"
           />
         </div>
 
@@ -94,7 +94,7 @@ const ExplorePage: React.FC = () => {
           <select
             value={categoryFilter}
             onChange={(e) => setCategoryFilter(e.target.value)}
-            className="w-full p-2 border rounded-lg"
+            className="w-full p-2 border rounded-lg bg-pink-200"
           >
             <option value="">All Categories</option>
             <option value="vegan">Vegan</option>

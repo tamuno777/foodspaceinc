@@ -28,22 +28,22 @@ export function CarouselPlugin() {
   },
   {
     img:banner2,
-    title:"seasoned spicy Chicken dish ",
+    title:"seasoned spicy Chicken  ",
     description:"A handfull of simple ingredients typify the fresh ,vibrant flavour of greek cooking"
   },
   {
     img:banner3,
-    title:"delicious creamy desert dish ",
+    title:"delicious creamy desert  ",
     description:"A handfull of simple ingredients typify the fresh ,vibrant flavour of greek cooking"
   },
   {
     img:banner4,
-    title:"delicious ponded yam and african soup  ",
+    title:"delicious african dish  ",
     description:"A handfull of simple ingredients typify the fresh ,vibrant flavour of aftrican cooking"
   },
   {
     img:banner5,
-    title:"delicious joloff rice and well seasoned kiwe  ",
+    title:" joloff and kiwe  ",
     description:"A handfull of simple ingredients typify the fresh ,vibrant flavour of aftrican cooking"
   },
   ];
