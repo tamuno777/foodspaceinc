@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -11,7 +12,8 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-bold">Recipe App</h3>
             <p className="text-gray-400 mt-2">
-              Your go-to platform for exploring, sharing, and creating recipes. Bringing food lovers together!
+              Your go-to platform for exploring, sharing, and creating recipes.
+              Bringing food lovers together!
             </p>
           </div>
 
@@ -54,9 +56,7 @@ const Footer = () => {
           {/* Contact Section */}
           <div>
             <h4 className="text-lg font-bold">Contact Us</h4>
-            <p className="text-gray-400 mt-2">
-              Email: support@recipeapp.com
-            </p>
+            <p className="text-gray-400 mt-2">Email: support@recipeapp.com</p>
             <p className="text-gray-400">Phone: +123 456 7890</p>
             <div className="flex space-x-4 mt-4">
               <a
@@ -65,7 +65,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="hover:text-pink-400"
               >
-                Facebook
+                <FaFacebook />
               </a>
               <a
                 href="https://twitter.com"
@@ -73,7 +73,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="hover:text-pink-400"
               >
-                Twitter
+                <FaTwitter />
               </a>
               <a
                 href="https://instagram.com"
@@ -81,7 +81,7 @@ const Footer = () => {
                 rel="noopener noreferrer"
                 className="hover:text-pink-400"
               >
-                Instagram
+                <FaInstagram />
               </a>
             </div>
           </div>
@@ -89,7 +89,9 @@ const Footer = () => {
 
         {/* Footer Bottom */}
         <div className="mt-8 text-center text-gray-500">
-          <p>&copy; {new Date().getFullYear()} Recipe App. All rights reserved.</p>
+          <p>
+            &copy; {new Date().getFullYear()} Recipe App. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>

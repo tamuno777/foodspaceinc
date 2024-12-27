@@ -1,11 +1,11 @@
 "use client";
 import * as React from "react";
 import Autoplay from "embla-carousel-autoplay";
-import banner1 from "../../../public/banner1.avif"
-import banner2 from "../../../public/banner2.avif"
-import banner3 from "../../../public/banner3.avif"
-import banner4 from "../../../public/banner4.avif"
-import banner5 from "../../../public/banner5.avif"
+import banner1 from "../../../public/banner1.avif";
+import banner2 from "../../../public/banner2.avif";
+import banner3 from "../../../public/banner3.avif";
+import banner4 from "../../../public/banner4.avif";
+import banner5 from "../../../public/banner5.avif";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
@@ -21,31 +21,36 @@ export function CarouselPlugin() {
     Autoplay({ delay: 2000, stopOnInteraction: true })
   );
   const images = [
-  {
-    img:banner1,
-    title:"Ultimate Vegan diet ",
-    description:"A handfull of simple ingredients typify the fresh ,vibrant flavour of vegan dishes"
-  },
-  {
-    img:banner2,
-    title:"seasoned spicy Chicken  ",
-    description:"A handfull of simple ingredients typify the fresh ,vibrant flavour of greek cooking"
-  },
-  {
-    img:banner3,
-    title:"delicious creamy desert  ",
-    description:"A handfull of simple ingredients typify the fresh ,vibrant flavour of greek cooking"
-  },
-  {
-    img:banner4,
-    title:"delicious african dish  ",
-    description:"A handfull of simple ingredients typify the fresh ,vibrant flavour of aftrican cooking"
-  },
-  {
-    img:banner5,
-    title:" joloff and kiwe  ",
-    description:"A handfull of simple ingredients typify the fresh ,vibrant flavour of aftrican cooking"
-  },
+    {
+      img: banner1,
+      title: "Ultimate Vegan diet ",
+      description:
+        "A handfull of simple ingredients typify the fresh ,vibrant flavour of vegan dishes",
+    },
+    {
+      img: banner2,
+      title: "seasoned spicy Chicken  ",
+      description:
+        "A handfull of simple ingredients typify the fresh ,vibrant flavour of greek cooking",
+    },
+    {
+      img: banner3,
+      title: "delicious creamy desert  ",
+      description:
+        "A handfull of simple ingredients typify the fresh ,vibrant flavour of greek cooking",
+    },
+    {
+      img: banner4,
+      title: "delicious african dish  ",
+      description:
+        "A handfull of simple ingredients typify the fresh ,vibrant flavour of aftrican cooking",
+    },
+    {
+      img: banner5,
+      title: " joloff and kiwe  ",
+      description:
+        "A handfull of simple ingredients typify the fresh ,vibrant flavour of aftrican cooking",
+    },
   ];
   return (
     <div className="">
@@ -55,32 +60,35 @@ export function CarouselPlugin() {
         onMouseEnter={plugin.current.stop}
         onMouseLeave={plugin.current.reset}
       >
-        <CarouselContent style={{height:"450px",width:"100vw"}}>
-          
-           {images.map((content, index) => (
-          <CarouselItem key={index}>
-            <div className="p-1 ">
-            <Card style={{height:"400px" }} className="relative overflow-hidden">
-                <CardContent className="relative h-full">
-                  <Image
-                    src={content.img}
-                    alt={`Carousel Image ${index + 1}`}
-                    fill
-                    className="object-cover rounded-lg"
-                  />
+        <CarouselContent style={{ height: "450px", width: "100vw" }}>
+          {images.map((content, index) => (
+            <CarouselItem key={index}>
+              <div className="p-1 ">
+                <Card
+                  style={{ height: "400px" }}
+                  className="relative overflow-hidden"
+                >
+                  <CardContent className="relative h-full">
+                    <Image
+                      src={content.img}
+                      alt={`Carousel Image ${index + 1}`}
+                      fill
+                      className="object-cover rounded-lg"
+                    />
 
-                  {/* Overlay Text */}
-                  <div className="absolute inset-0 flex flex-col flex-wrap items-center justify-center bg-black/20 text-white text-center p-4 rounded-lg">
-                    <h1 className=" font-bold mb-2" style={{fontSize:"50px", width:"50%",display:"flex",flexWrap:"wrap"}}>
-                      {content.title}
-                    </h1>
-                    <p className="text-md">{content.description}</p>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </CarouselItem>
-        ))}
+                    {/* Overlay Text */}
+                    <div className="absolute inset-0 flex flex-col flex-wrap items-center justify-center bg-black/20 text-white text-center p-4 rounded-lg">
+                      <h1 className=" flex justify-center font-bold mb-2 text-4xl sm:text-5xl md:text-6xl lg:text-7xl w-full md:w-3/4 flex flex-wrap leading-tight">
+                        {content.title}
+                      </h1>
+
+                      <p className="text-md flex flex-wrap">{content.description}</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </CarouselItem>
+          ))}
         </CarouselContent>
         <CarouselPrevious />
         <CarouselNext />
