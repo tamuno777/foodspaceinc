@@ -10,7 +10,7 @@ const ProfileUID: React.FC<{ uid: string }> = ({ uid }) => {
   return (
     <div className="my-2 flex items-center gap-2">
       <p>
-        <strong>UID:</strong> {isHashed ? maskUID(uid) : uid}
+        <strong>UID :</strong> {isHashed ? maskUID(uid) : uid}
       </p>
       <button
         onClick={() => setIsHashed(!isHashed)}
