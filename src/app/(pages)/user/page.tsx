@@ -17,7 +17,7 @@ const Profile: React.FC = () => {
   }
 
   if (!user) {
-    router.push("/signIn");
+    router.push("/auth");
     return null;
   }
 
@@ -43,9 +43,7 @@ const Profile: React.FC = () => {
               <FaUser style={{ fontSize: "45px" }} />
             )}
           </div>
-          {/* <p className="my-2">
-            <strong>UID:</strong> {user.uid}
-          </p> */}
+          
             <ProfileUID uid={user.uid} />
 
           <div className="flex flex-wrap gap-4">

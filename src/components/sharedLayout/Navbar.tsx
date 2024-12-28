@@ -109,8 +109,8 @@ const Navbar = () => {
                 </NavigationMenuItem>
               ) : (
                 <NavigationMenuItem>
-                  <NavigationMenuLink className="px-2 m-1" href="/auth">
-                    <button className="text-gray-700">Login</button>
+                  <NavigationMenuLink className="px-2 m-1 bg-pink-500 border rounded py-1 text-center font-bold" href="/auth">
+                    <button className="text-white ">Login</button>
                   </NavigationMenuLink>
                 </NavigationMenuItem>
               )}
@@ -171,8 +171,8 @@ const Navbar = () => {
                 />
               </a>
             ) : (
-              <a href="/auth" className="block py-2 text-gray-700">
-                <button className="text-gray-700">Login</button>
+              <a href="/auth" className="block py-2 text-white font-bold bg-pink-500 border rounded px-1 text-center">
+                <button className="text-white">Login</button>
               </a>
             )}
           </div>

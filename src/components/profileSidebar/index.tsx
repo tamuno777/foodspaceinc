@@ -3,7 +3,7 @@
 import React from "react";
 import { signOut } from "firebase/auth";
 import { auth } from "@/firebase/firebaseConfig";
-import { FaUser, FaUtensils, FaSignOutAlt } from "react-icons/fa";
+import { FaUser, FaUtensils, FaSignOutAlt, FaWpforms } from "react-icons/fa";
 
 interface SidebarProps {
   onNavigate: (route: string) => void;
@@ -12,7 +12,7 @@ interface SidebarProps {
 const Sidebar: React.FC<SidebarProps> = ({ onNavigate }) => {
   const handleLogout = async () => {
     await signOut(auth);
-    onNavigate("/auth");
+    onNavigate("/");
   };
 
   return (
@@ -21,7 +21,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onNavigate }) => {
 
       <button
         className="flex items-center mb-4 py-2 px-4 bg-pink-500 hover:bg-blue-600 rounded"
-        onClick={() => onNavigate("/profile")}
+        onClick={() => onNavigate("/user")}
       >
         <FaUser className="mr-2 text-lg" />
         <span className="hidden lg:inline">User Details</span>
@@ -31,8 +31,15 @@ const Sidebar: React.FC<SidebarProps> = ({ onNavigate }) => {
         className="flex items-center mb-4 py-2 px-4 bg-gray-500 hover:bg-green-600 rounded"
         onClick={() => onNavigate("/submitRecipie")}
       >
-        <FaUtensils className="mr-2 text-lg" />
+        <FaWpforms className="mr-2 text-lg" />
         <span className="hidden lg:inline">Submit Dish</span>
+      </button>
+      <button
+        className="flex items-center mb-4 py-2 px-4 bg-blue-500 hover:bg-green-600 rounded"
+        onClick={() => onNavigate("/submitteddishes")}
+      >
+        <FaUtensils className="mr-2 text-lg" />
+        <span className="hidden lg:inline">My dish</span>
       </button>
 
       <button

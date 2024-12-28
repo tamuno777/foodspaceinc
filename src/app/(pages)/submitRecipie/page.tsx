@@ -3,8 +3,14 @@
 import { useState } from "react";
 import { db } from "../../../firebase/firebaseConfig";
 import { collection, addDoc } from "firebase/firestore";
+import Sidebar from "@/components/profileSidebar";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/authcontext";
 
 const SubmitDishForm = () => {
+  const router = useRouter();
+  const { user, loading } = useAuth();
+ 
   const [dish, setDish] = useState({
     title: "",
     chef: "",
@@ -12,10 +18,18 @@ const SubmitDishForm = () => {
     image: "",
     content: "",
     category: "",
+    
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  if (loading) {
+    return <div>Loading....</div>;
+  }
 
+  if (!user) {
+    router.push("/signIn");
+    return null;
+  }
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -27,7 +41,11 @@ const SubmitDishForm = () => {
     try {
       setIsSubmitting(true);
       const collectionRef = collection(db, "dishes");
-      await addDoc(collectionRef, dish);
+      // await addDoc(collectionRef, dish);
+      await addDoc(collectionRef, {
+        ...dish,
+        userId: user.uid, // Add userId to associate dish with the current user
+      });
       alert("Dish submitted successfully!");
       setDish({
         title: "",
@@ -44,8 +62,16 @@ const SubmitDishForm = () => {
       setIsSubmitting(false);
     }
   };
-
+ 
   return (
+    <div className="flex min-h-screen">
+    {/* Sidebar */}
+    <div className="bg-gray-800 text-white  min-h-screen">
+      <Sidebar onNavigate={(route: string) => router.push(route)} />
+    </div>
+
+    {/* Main Content */}
+    <div className="flex-1 p-6 bg-gray-100 overflow-hidden">
     <div className="max-w-2xl mx-auto p-6 bg-white shadow-lg rounded-lg my-5">
       <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">
         Submit a New Dish
@@ -156,6 +182,8 @@ const SubmitDishForm = () => {
           {isSubmitting ? "Submitting..." : "Submit Dish"}
         </button>
       </form>
+    </div>
+    </div>
     </div>
   );
 };
