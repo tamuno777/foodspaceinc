@@ -21,7 +21,7 @@ const AuthPage = () => {
         onClick={handleGoogleSignIn}
         className="bg-pink-500 text-white px-6 py-3 rounded-lg shadow-md hover:bg-pink-600 transition"
       >
-        Sign in with Google
+        Sign In with Google
       </button>
     </div>
   );
